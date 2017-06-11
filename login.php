@@ -12,7 +12,7 @@ if(Input::exists()){
     if(Token::check(Input::get('token'))) {
         $validate = new Validation();
         $validation = $validate->check($_POST, array(
-            'email' => array(
+            'username' => array(
                 'required' => true
             ),
             'password' => array(
@@ -21,12 +21,12 @@ if(Input::exists()){
         ));
         if ($validation->passed()) {
             //login user
-            $email = $_POST['email'];
+            $username = $_POST['username'];
             $password = $_POST['password'];
-            $loginCheck = DB::getInstance();
-            $loginCheck->query('SELECT * FROM user_detail WHERE email = ? AND Password = ?', array($email, $password));
-            if ($loginCheck->count()) {
-                echo 'User exists.';
+            $user = new User();
+            if ($user->login($username, $password)) {
+                Session::put('username',$user->username);
+                Session::put('isLoggedIn',$user->isLoggedIn());
             } else {
                 echo 'Credentials does not match.';
             }
@@ -41,6 +41,7 @@ if(Input::exists()){
         }
     }
 }
+
 ?>
 <form action="" method="post">
     <div>
@@ -49,7 +50,7 @@ if(Input::exists()){
 
     <div>
         <label>Email</label><br>
-        <input name="email"  placeholder="Enter your e-mail">
+        <input name="username"  placeholder="Enter your username">
     </div>
     <div>
         <label>Password</label><br>

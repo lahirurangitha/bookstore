@@ -17,12 +17,10 @@ class User{
         $this->_db = DB::getInstance();
         $this->_sessionName = Config::get('session/session_name');
         $this->_cookieName = Config::get('remember/cookie_name');
-
-
     }
 
     public function create($fields =array()){
-        if(!$this->_db->insert('user_detail',$fields)){
+        if(!$this->_db->insert('user',$fields)){
             throw new Exception('There was a problem creating an account.');
         }
     }
@@ -31,8 +29,6 @@ class User{
         return (!empty($this->_data)) ? true : false;
     }
 
-
-
     public  function data(){
         return $this->_data;
     }
@@ -40,4 +36,27 @@ class User{
     public function isLoggedIn(){
         return $this->_isLoggedIn;
     }
+
+    public function isAdmin(){
+        return ($this->role == 1);
+    }
+
+    private function init(){
+        foreach ($this->_data[0] as $key => $value){
+            $this->{$key} = $value;
+        }
+    }
+
+    public function login($username, $password){
+        $this->_db->query('SELECT * FROM user WHERE username = ? AND password = ?', array($username, Hash::make($password)));
+        $this->_data = $this->_db->results();
+        if ($this->_db->count()) {
+            $this->init();
+            $this->_isLoggedIn = true;
+            return 1;
+        }
+        return 0;
+    }
+
+
 }

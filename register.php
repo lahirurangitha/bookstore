@@ -13,13 +13,12 @@ if(Input::exists()){
     if(Token::check(Input::get('token'))) {
         $validate = new Validation();
         $validation = $validate->check($_POST, array(
-            'email' => array(
+            'username' => array(
                 'required' => true,
-                'unique' => 'user_detail' //table name
+                'unique' => 'user' //table name
             ),
             'password' => array(
-                'required' => true,
-                'min' => 6
+                'required' => true
             ),
             're-password' => array(
                 'required' => true,
@@ -32,7 +31,7 @@ if(Input::exists()){
             $user = new User();
             try{
                 $user->create(array(
-                     'email' => Input::get('email'),
+                     'username' => Input::get('username'),
                      'password' => Hash::make(Input::get('password'))
                     ));
 
@@ -61,7 +60,7 @@ if(Input::exists()){
 
     <div>
         <label>Email</label><br>
-        <input type="email" name="email"  placeholder="Enter your e-mail">
+        <input type="username" name="username"  placeholder="Enter your username">
     </div>
     <div>
         <label>Password</label><br>
