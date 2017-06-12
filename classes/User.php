@@ -11,7 +11,8 @@ class User{
         $_data,
         $_sessionName,
         $_cookieName,
-        $_isLoggedIn;
+        $_isLoggedIn,
+        $_toString;
 
     public function __construct($user = null) {
         $this->_db = DB::getInstance();
@@ -46,6 +47,9 @@ class User{
             $this->{$key} = $value;
         }
     }
+    public function toString(){
+        return json_encode(['id'=>$this->id,'username'=>$this->username,'role'=>$this->role,'token'=>$this->token]);
+    }
 
     public function login($username, $password){
         $this->_db->query('SELECT * FROM user WHERE username = ? AND password = ?', array($username, Hash::make($password)));
@@ -58,5 +62,15 @@ class User{
         return 0;
     }
 
+    public function auth($username, $token){
+        $this->_db->query('SELECT * FROM user WHERE username = ? AND token = ?', array($username, $token));
+        $this->_data = $this->_db->results();
+        if ($this->_db->count()) {
+            $this->init();
+            $this->_isLoggedIn = true;
+            return 1;
+        }
+        return 0;
+    }
 
 }

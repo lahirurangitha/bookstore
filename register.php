@@ -1,13 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lahiru
- * Date: 2/20/2016
- * Time: 6:52 PM
- */
 
 require_once 'core/init.php';
 
+if(Session::exists('user')){
+    $user = new User();
+    $u_data = json_decode(Session::get('user'),true);
+    if(!$user->auth($u_data['username'],$u_data['token'])){
+        session_destroy();
+        Redirect::to('login.php');
+    }
+    if($u_data['role']==1){
+        Redirect::to('admin_dashboard.php');
+    }else{
+        Redirect::to('user_dashboard.php');
+    }
+}
 
 if(Input::exists()){
     if(Token::check(Input::get('token'))) {
@@ -32,10 +39,11 @@ if(Input::exists()){
             try{
                 $user->create(array(
                      'username' => Input::get('username'),
-                     'password' => Hash::make(Input::get('password'))
+                     'password' => Hash::make(Input::get('password')),
+                     'token' => Hash::make(Input::get('username').Input::get('password'))
                     ));
 
-                echo 'registration sucessfull';
+                echo 'registration successful';
                 Redirect::to('index.php');
             }catch (Exception $e){
                 die($e->getMessage());

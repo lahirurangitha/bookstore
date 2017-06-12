@@ -1,12 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lahiru
- * Date: 2/19/2016
- * Time: 11:48 AM
- */
 
 require_once 'core/init.php';
+
+if(Session::exists('user')){
+    $user = new User();
+    $u_data = json_decode(Session::get('user'),true);
+    if(!$user->auth($u_data['username'],$u_data['token'])){
+        session_destroy();
+        Redirect::to('login.php');
+    }
+    if($u_data['role']==1){
+        Redirect::to('admin_dashboard.php');
+    }else{
+        Redirect::to('user_dashboard.php');
+    }
+}
 
 if(Input::exists()){
     if(Token::check(Input::get('token'))) {
@@ -25,8 +33,7 @@ if(Input::exists()){
             $password = $_POST['password'];
             $user = new User();
             if ($user->login($username, $password)) {
-                Session::put('username',$user->username);
-                Session::put('isLoggedIn',$user->isLoggedIn());
+                Session::put('user',$user->toString());
             } else {
                 echo 'Credentials does not match.';
             }
@@ -43,6 +50,15 @@ if(Input::exists()){
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include_once 'includes/header.php'?>
+
+<body>
+
+<?php include_once 'includes/navigation.php'?>
 <form action="" method="post">
     <div>
         <h3 id="signin"><strong>Sign In</strong></h3>
@@ -59,3 +75,10 @@ if(Input::exists()){
     <input type="hidden" name="token" value="<?php echo Token::generate();?>">
     <input type="submit" value="Sign In">
 </form>
+
+
+<?php include_once 'includes/footer.php'?>
+</body>
+
+</html>
+
