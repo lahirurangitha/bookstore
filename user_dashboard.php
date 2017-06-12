@@ -10,7 +10,7 @@ require_once 'core/init.php';
 
 <?php include_once 'includes/navigation.php'?>
 
-
+user
 
 <?php include_once 'includes/footer.php'?>
 </body>

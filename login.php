@@ -14,6 +14,8 @@ if(Session::exists('user')){
     }else{
         Redirect::to('user_dashboard.php');
     }
+}else{
+    $user  = new User();
 }
 
 if(Input::exists()){
@@ -34,6 +36,11 @@ if(Input::exists()){
             $user = new User();
             if ($user->login($username, $password)) {
                 Session::put('user',$user->toString());
+                if($user->role==1){
+                    Redirect::to('admin_dashboard.php');
+                }else{
+                    Redirect::to('user_dashboard.php');
+                }
             } else {
                 echo 'Credentials does not match.';
             }

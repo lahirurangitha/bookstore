@@ -1,5 +1,6 @@
-<footer class="navbar-inverse navbar-fixed-bottom" style="min-height: 50px">
-    <div class="container">
+
+<footer class="navbar-inverse navbar-fixed-bottom container-fluid" style="min-height: 50px">
+    <div>
         &copy; bookstore.lk 2017
     </div>
 </footer>
