@@ -45,12 +45,23 @@ $users = $user->getUsers();
                                     <td><?php echo $u->username?></td>
                                     <td><?php echo $u->email?></td>
                                     <td>
-                                        <a style="text-decoration: none">
-                                            <button class="btn btn-success">Activate</button>
-                                        </a>
-                                        <a style="text-decoration: none">
-                                            <button class="btn btn-danger">Deactivate</button>
-                                        </a>
+                                        <?php
+                                        if($u->active==1){
+                                            ?>
+                                            <a href="manage_user_process.php?id=<?php echo $u->id?>&set=0" style="text-decoration: none" onclick="return confirm('Are You Sure?')">
+                                                <button class="btn btn-danger btn-sm" style="width: 100px">Deactivate</button>
+                                            </a>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <a href="manage_user_process.php?id=<?php echo $u->id?>&set=1" style="text-decoration: none" onclick="return confirm('Are You Sure?')">
+                                                <button class="btn btn-success btn-sm" style="width: 100px">Activate</button>
+                                            </a>
+                                            <?php
+                                        }
+                                        ?>
+
+
                                     </td>
                                 </tr>
                                 <?php

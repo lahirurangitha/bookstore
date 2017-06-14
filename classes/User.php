@@ -62,7 +62,7 @@ class User{
     }
 
     public function auth($username, $token){
-        $this->_db->query('SELECT * FROM user WHERE username = ? AND token = ?', array($username, $token));
+        $this->_db->query('SELECT * FROM user WHERE username = ? AND token = ? AND active = 1', array($username, $token));
         $this->_data = $this->_db->results();
         if ($this->_db->count()) {
             $this->init();
@@ -75,7 +75,7 @@ class User{
     public function getUsers()
     {
         $users = array();
-        $this->_db->query('SELECT * FROM user WHERE role = ?' , array(2));
+        $this->_db->query('SELECT * FROM user WHERE role = ? ' , array(2));
         foreach ($this->_db->results() as $u){
             $users[] = $u;
         }

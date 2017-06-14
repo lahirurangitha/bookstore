@@ -11,7 +11,14 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">About</a></li>
+                <?php
+                if($user->isLoggedIn()){
+                    $user->isAdmin()?$dashboard = 'admin_dashboard.php':$dashboard = 'user_dashboard.php';
+                    ?>
+                    <li class="<?php echo (basename($_SERVER['PHP_SELF']) == $dashboard ? 'active' : '');?>"><a href="<?php echo $dashboard?>">Dashboard</a></li>
+                    <?php
+                }
+                ?>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
