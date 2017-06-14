@@ -11,8 +11,7 @@ class User{
         $_data,
         $_sessionName,
         $_cookieName,
-        $_isLoggedIn,
-        $_toString;
+        $_isLoggedIn;
 
     public function __construct($user = null) {
         $this->_db = DB::getInstance();

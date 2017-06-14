@@ -9,9 +9,8 @@
             </button>
             <a class="navbar-brand" href="index.php">Bookstore</a>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Contact</a></li>
@@ -20,8 +19,8 @@
                 <?php
                 if(!$user->isLoggedIn()){
                     ?>
-                    <li><a href="login.php"><span class="fa fa-sign-in"></span> Login</a></li>
-                    <li><a href="register.php"><span class="fa fa-book"></span> Register</a></li>
+                    <li class="<?php echo (basename($_SERVER['PHP_SELF']) == 'login.php' ? 'active' : '');?>"><a href="login.php"><span class="fa fa-sign-in"></span> Login</a></li>
+                    <li class="<?php echo (basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : '');?>"><a href="register.php"><span class="fa fa-book"></span> Register</a></li>
                     <?php
                 }else{
                     ?>

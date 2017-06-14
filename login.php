@@ -2,24 +2,19 @@
 
 require_once 'core/init.php';
 
-if(Session::exists('user')){
-    $user = new User();
-    $u_data = json_decode(Session::get('user'),true);
-    if(!$user->auth($u_data['username'],$u_data['token'])){
-        session_destroy();
-        Redirect::to('login.php');
-    }
-    if($u_data['role']==1){
+include_once 'auth.php';
+if ($user->isLoggedIn()) {
+    if ($user->isAdmin()) {
         Redirect::to('admin_dashboard.php');
-    }else{
+    } else {
         Redirect::to('user_dashboard.php');
     }
-}else{
-    $user  = new User();
+
 }
 
-if(Input::exists()){
-    if(Token::check(Input::get('token'))) {
+
+if (Input::exists()) {
+    if (Token::check(Input::get('token'))) {
         $validate = new Validation();
         $validation = $validate->check($_POST, array(
             'username' => array(
@@ -35,10 +30,10 @@ if(Input::exists()){
             $password = $_POST['password'];
             $user = new User();
             if ($user->login($username, $password)) {
-                Session::put('user',$user->toString());
-                if($user->role==1){
+                Session::put('user', $user->toString());
+                if ($user->role == 1) {
                     Redirect::to('admin_dashboard.php');
-                }else{
+                } else {
                     Redirect::to('user_dashboard.php');
                 }
             } else {
@@ -61,30 +56,33 @@ if(Input::exists()){
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once 'includes/header.php'?>
+<?php include_once 'includes/header.php' ?>
 
 <body>
 
-<?php include_once 'includes/navigation.php'?>
-<form action="" method="post">
-    <div>
-        <h3 id="signin"><strong>Sign In</strong></h3>
-    </div>
+<?php include_once 'includes/navigation.php' ?>
+<div class="col-md-4 col-md-offset-4 jumbotron">
+    <form action="" method="post">
+        <div class="form-group">
+            <h3 class="text-center"><strong>Login</strong></h3>
+        </div>
 
-    <div>
-        <label>Email</label><br>
-        <input name="username"  placeholder="Enter your username">
-    </div>
-    <div>
-        <label>Password</label><br>
-        <input type="password" name="password" placeholder="Enter password">
-    </div>
-    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
-    <input type="submit" value="Sign In">
-</form>
+        <div class="form-group">
+            <label>Email</label><br>
+            <input class="form-control" name="username" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+            <label>Password</label><br>
+            <input class="form-control" type="password" name="password" placeholder="Enter password">
+        </div>
+        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+        <input class="form-control btn-primary" type="submit" value="Sign In">
+    </form>
+    <hr>
+    <a href="register.php" style="text-decoration: none"><button class="form-control btn-success">Register</button></a>
+</div>
 
-
-<?php include_once 'includes/footer.php'?>
+<?php include_once 'includes/footer.php' ?>
 </body>
 
 </html>

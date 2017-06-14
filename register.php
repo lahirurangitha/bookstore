@@ -2,18 +2,14 @@
 
 require_once 'core/init.php';
 
-if(Session::exists('user')){
-    $user = new User();
-    $u_data = json_decode(Session::get('user'),true);
-    if(!$user->auth($u_data['username'],$u_data['token'])){
-        session_destroy();
-        Redirect::to('login.php');
-    }
-    if($u_data['role']==1){
+include_once 'auth.php';
+if ($user->isLoggedIn()) {
+    if($user->isAdmin()){
         Redirect::to('admin_dashboard.php');
-    }else{
+    }else {
         Redirect::to('user_dashboard.php');
     }
+
 }
 
 if(Input::exists()){
@@ -53,32 +49,50 @@ if(Input::exists()){
             $str = "";
             foreach ($validate->errors() as $error) {
                 $str .= $error;
-                $str .= '<br>';
-                //            $str .= '\n';
+                $str .= '\n';
             }
-            echo $str;
+            echo '<script type="text/javascript">alert("' . $str . '")</script>';
         }
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include_once 'includes/header.php' ?>
+
+<body>
+<?php include_once 'includes/navigation.php' ?>
+
+<div class="col-md-4 col-md-offset-4 jumbotron">
 <form action="" method="post">
-    <div>
-        <h3><strong>Sign up</strong></h3>
+    <div class="form-group">
+        <h3 class="text-center"><strong>Register</strong></h3>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Email</label><br>
-        <input type="username" name="username"  placeholder="Enter your username">
+        <input class="form-control" type="username" name="username"  placeholder="Enter your username">
     </div>
-    <div>
+    <div class="form-group">
         <label>Password</label><br>
-        <input type="password" name="password" placeholder="Enter password">
+        <input class="form-control" type="password" name="password" placeholder="Enter password">
     </div>
-    <div>
+    <div class="form-group">
         <label>Re-Password</label><br>
-        <input type="password" name="re-password" placeholder="Enter password">
+        <input class="form-control" type="password" name="re-password" placeholder="Enter password">
     </div>
 
     <input type="hidden" name="token" value="<?php echo Token::generate();?>">
-    <input type="submit" value="Register">
+    <input class="form-control btn-success" type="submit" value="Register">
 </form>
+    <hr>
+    <a href="login.php" style="text-decoration: none"><button class="form-control btn-primary">Login</button></a>
+</div>
+
+
+<?php include_once 'includes/footer.php' ?>
+</body>
+
+</html>
