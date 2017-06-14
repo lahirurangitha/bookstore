@@ -72,4 +72,14 @@ class User{
         return 0;
     }
 
+    public function getUsers()
+    {
+        $users = array();
+        $this->_db->query('SELECT * FROM user WHERE role = ?' , array(2));
+        foreach ($this->_db->results() as $u){
+            $users[] = $u;
+        }
+        return $users;
+    }
+
 }
