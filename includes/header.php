@@ -9,10 +9,10 @@
     <title>Bookstore</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="styles/css/bootstrap.min.css" rel="stylesheet">
+<!--    <link href="styles/css/bootstrap.min.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
-    <link href="styles/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--    <link href="styles/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
     <link href="styles/css/custom.css" rel="stylesheet" type="text/css">
 
