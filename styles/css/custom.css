@@ -1,13 +1,32 @@
-.img_icon{
-    width: 150px;
-    height: 150px;
+body {
+    margin: 0;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+}
+.content{
+    min-height: 80vh;
+}
+
+.footer{
+    background-color: #111;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    min-height: 10vh;
 }
 
 .active {
     background-color: #4CAF50;
 }
 
-body {margin: 0;}
+
+.img_icon{
+    width: 150px;
+    height: 150px;
+}
+/*nav*/
 
 ul.topnav {
     list-style-type: none;
@@ -36,4 +55,48 @@ ul.topnav li.right {float: right;}
 @media screen and (max-width: 600px){
     ul.topnav li.right,
     ul.topnav li {float: none;}
+}
+
+/*forms*/
+.input_text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input_submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input_link {
+    width: 100%;
+    background-color: #204d74;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.input_submit:hover {
+    background-color: #45a049;
+}
+
+.form_background {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }

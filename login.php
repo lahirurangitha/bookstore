@@ -61,25 +61,25 @@ if (Input::exists()) {
 <body>
 
 <?php include_once 'includes/navigation.php' ?>
-<div class="col-md-4 col-md-offset-4 jumbotron">
+<div class="content">
     <form action="" method="post">
-        <div class="form-group">
+        <div class="">
             <h3 class="text-center"><strong>Login</strong></h3>
         </div>
 
-        <div class="form-group">
+        <div class="">
             <label>Email</label><br>
-            <input class="form-control" name="username" placeholder="Enter your username">
+            <input class="input_text" name="username" placeholder="Enter your username">
         </div>
-        <div class="form-group">
+        <div class="">
             <label>Password</label><br>
-            <input class="form-control" type="password" name="password" placeholder="Enter password">
+            <input class="input_text" type="password" name="password" placeholder="Enter password">
         </div>
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-        <input class="form-control btn-primary" type="submit" value="Sign In">
+        <input class="input_submit" type="submit" value="Sign In">
     </form>
     <hr>
-    <a href="register.php" style="text-decoration: none"><button class="form-control btn-success">Register</button></a>
+    <a href="register.php"><button class="input_link">Register</button></a>
 </div>
 
 <?php include_once 'includes/footer.php' ?>

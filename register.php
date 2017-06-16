@@ -65,7 +65,7 @@ if(Input::exists()){
 <body>
 <?php include_once 'includes/navigation.php' ?>
 
-<div class="col-md-4 col-md-offset-4 jumbotron">
+<div class="content">
 <form action="" method="post">
     <div class="form-group">
         <h3 class="text-center"><strong>Register</strong></h3>
