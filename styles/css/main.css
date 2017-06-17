@@ -26,10 +26,6 @@ body {
     background-color: #4CAF50;
 }
 
-.img_icon{
-    width: 150px;
-    height: 150px;
-}
 /*nav*/
 .nav{
     min-height: 10vh;
@@ -124,5 +120,55 @@ body {
 
 .input_submit:hover {
     background-color: #45a049;
+}
+
+/*panel*/
+.panel_item{
+   /*float: left;*/
+}
+.panel_background {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+
+.panel_img{
+    width: 150px;
+    height: 150px;
+}
+
+.panel_link a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.panel_link a:hover{
+    color: #45a049;
+}
+.panel_heading{
+    text-align: center;
+}
+
+/*table*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+/*tr:nth-child(even){background-color:#dddddd}*/
+tr:hover{
+    background-color: #dddddd;
+}
+th {
+    background-color: #45a049;
+    color: white;
 }
 
