@@ -68,8 +68,8 @@ if(Input::exists()){
 <div class="content">
     <div class="form_background col-5 col-3-offset">
         <form action="" method="post">
-            <div class="">
-                <h3 class="text-center"><strong>Register</strong></h3>
+            <div class="panel_heading">
+                <h3><strong>Register</strong></h3>
             </div>
 
             <div class="">

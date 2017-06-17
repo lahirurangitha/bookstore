@@ -5,7 +5,9 @@ include_once 'auth.php';
 if (!$user->isLoggedIn()) {
     Redirect::to('login.php');
 }
-
+if($user->isAdmin()){
+    Redirect::to('login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

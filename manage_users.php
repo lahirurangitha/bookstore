@@ -2,7 +2,7 @@
 require_once 'core/init.php';
 
 include_once 'auth.php';
-if (!$user->isLoggedIn()) {
+if (!$user->isLoggedIn()||!$user->isAdmin()) {
     Redirect::to('login.php');
 }
 
@@ -20,7 +20,14 @@ $users = $user->getUsers();
 ?>
 
 <div class="content">
-    <div class="panel_background col-12">
+    <div class="breadcrumb">
+        <ul>
+            <li><a href="user_dashboard.php">Dashboard</a>&raquo</li>
+            <li><a href="manage_users.php">Manage Users</a>&raquo</li>
+        </ul>
+    </div>
+    <div class="panel_background col-11">
+
         <div class="panel_heading"><strong>Manage Users</strong></div>
         <div class="panel_body">
             <table class="table">

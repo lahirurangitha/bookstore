@@ -2,9 +2,10 @@
 require_once 'core/init.php';
 
 include_once 'auth.php';
-if (!$user->isLoggedIn()) {
+if (!$user->isLoggedIn()||!$user->isAdmin()) {
     Redirect::to('login.php');
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -19,22 +20,24 @@ if (!$user->isLoggedIn()) {
 
 ?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-7 col-xs-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Upload Books</strong></div>
-                <div class="panel-body">
-                    <form method="post" action="" enctype="multipart/form-data">
-                        <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
-                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-                        <input type="submit" class="btn btn-primary">
-                    </form>
-                </div>
-                <!--                <div class="panel-footer"></div>-->
-            </div>
-        </div>
+<div class="content">
+    <div class="breadcrumb">
+        <ul>
+            <li><a href="user_dashboard.php">Dashboard</a>&raquo</li>
+            <li><a href="upload_books.php">Upload Books</a>&raquo</li>
+        </ul>
+    </div>
+    <div class="panel_background col-11">
 
+        <div class="panel_heading"><strong>Upload Books</strong></div>
+        <div class="panel_body">
+            <form method="post" action="upload_books_process.php" enctype="multipart/form-data">
+                <input name="books[]"  type="file" multiple="" />
+                <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+        <!--                <div class="panel-footer"></div>-->
     </div>
 </div>
 

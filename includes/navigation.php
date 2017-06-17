@@ -62,7 +62,7 @@
             <?php
         }else{
             ?>
-            <li class="right"><a href="logout.php"><span class="fa fa-sign-out"></span> logout</a></li>
+            <li class="right"><a href="logout.php"><span class="fa fa-sign-out"></span> Logout</a></li>
             <?php
         }
         ?>
