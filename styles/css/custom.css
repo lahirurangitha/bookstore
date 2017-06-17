@@ -1,123 +1,29 @@
-body {
-    margin: 0;
-    background-color: #f2f2f2;
-    min-height: 100vh;
-}
-.content{
-    min-height: 80vh;
-}
 
-.footer{
-    background-color: #111;
-    position: relative;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    min-height: 10vh;
-}
-
-.active {
-    background-color: #4CAF50;
-}
-
-
-.img_icon{
-    width: 150px;
-    height: 150px;
-}
-/*nav*/
-.nav{
-    min-height: 10vh;
-}
-.nav ul {
-    list-style: none;
-    background-color: #444;
-    padding: 0;
-    margin: 0;
-}
-.nav li {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2em;
-    text-align: center;
-    border-bottom: 1px solid #888;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    transition: .3s background-color;
-}
-
-.nav a:hover {
-    background-color: #005f5f;
-}
-
-.nav a.active {
-    background-color: #fff;
-    color: #444;
-    cursor: default;
-}
 
 @media screen and (min-width: 600px) {
-    .nav li {
-        width: 120px;
-        border-bottom: none;
-        height: 50px;
-        line-height: 50px;
-        font-size: 1.4em;
-    }
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
 
-    /* Option 1 - Display Inline */
-    .nav li {
-        display: inline-block;
-    }
-}
-
-
-
-
-/*forms*/
-.input_text {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.input_submit {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.input_link {
-    width: 100%;
-    background-color: #204d74;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.input_submit:hover {
-    background-color: #45a049;
-}
-
-.form_background {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+    .col-1-offset{margin-left: 8.33%;}
+    .col-2-offset {margin-left: 16.66%;}
+    .col-3-offset {margin-left: 25%;}
+    .col-4-offset {margin-left: 33.33%;}
+    .col-5-offset {margin-left: 41.66%;}
+    .col-6-offset {margin-left: 50%;}
+    .col-7-offset {margin-left: 58.33%;}
+    .col-8-offset {margin-left: 66.66%;}
+    .col-9-offset {margin-left: 75%;}
+    .col-10-offset {margin-left: 83.33%;}
+    .col-11-offset {margin-left: 91.66%;}
+    .col-12-offset {margin-left: 100%;}
 }

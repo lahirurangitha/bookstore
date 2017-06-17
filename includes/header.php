@@ -14,6 +14,8 @@
     <!-- Custom Fonts -->
 <!--    <link href="styles/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
+    <link href="styles/css/main.css" rel="stylesheet" type="text/css">
+
     <link href="styles/css/custom.css" rel="stylesheet" type="text/css">
 
 </head>

@@ -41,8 +41,8 @@
 <!--    </div>-->
 <!--</nav>-->
 
-<nav>
-    <ul class="topnav">
+<nav class="nav">
+    <ul>
         <li><a href="index.php">Bookstore</a></li>
         <?php
         if($user->isLoggedIn()){

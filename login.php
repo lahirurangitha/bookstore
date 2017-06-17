@@ -62,24 +62,26 @@ if (Input::exists()) {
 
 <?php include_once 'includes/navigation.php' ?>
 <div class="content">
-    <form action="" method="post">
-        <div class="">
-            <h3 class="text-center"><strong>Login</strong></h3>
-        </div>
+    <div class="form_background col-5 col-3-offset">
+        <form action="" method="post">
+            <div class="">
+                <h3 class="text-center"><strong>Login</strong></h3>
+            </div>
 
-        <div class="">
-            <label>Email</label><br>
-            <input class="input_text" name="username" placeholder="Enter your username">
-        </div>
-        <div class="">
-            <label>Password</label><br>
-            <input class="input_text" type="password" name="password" placeholder="Enter password">
-        </div>
-        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-        <input class="input_submit" type="submit" value="Sign In">
-    </form>
-    <hr>
-    <a href="register.php"><button class="input_link">Register</button></a>
+            <div class="">
+                <label>Username</label><br>
+                <input class="input_text" name="username" placeholder="Enter your username">
+            </div>
+            <div class="">
+                <label>Password</label><br>
+                <input class="input_text" type="password" name="password" placeholder="Enter password">
+            </div>
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+            <input class="input_submit" type="submit" value="Sign In">
+        </form>
+        <hr>
+        <a href="register.php"><button class="input_link">Register</button></a>
+    </div>
 </div>
 
 <?php include_once 'includes/footer.php' ?>

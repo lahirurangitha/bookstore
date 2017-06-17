@@ -66,29 +66,31 @@ if(Input::exists()){
 <?php include_once 'includes/navigation.php' ?>
 
 <div class="content">
-<form action="" method="post">
-    <div class="form-group">
-        <h3 class="text-center"><strong>Register</strong></h3>
-    </div>
+    <div class="form_background col-5 col-3-offset">
+        <form action="" method="post">
+            <div class="">
+                <h3 class="text-center"><strong>Register</strong></h3>
+            </div>
 
-    <div class="form-group">
-        <label>Email</label><br>
-        <input class="form-control" type="username" name="username"  placeholder="Enter your username">
-    </div>
-    <div class="form-group">
-        <label>Password</label><br>
-        <input class="form-control" type="password" name="password" placeholder="Enter password">
-    </div>
-    <div class="form-group">
-        <label>Re-Password</label><br>
-        <input class="form-control" type="password" name="re-password" placeholder="Enter password">
-    </div>
+            <div class="">
+                <label>Username</label><br>
+                <input class="input_text" type="username" name="username"  placeholder="Enter your username">
+            </div>
+            <div class="">
+                <label>Password</label><br>
+                <input class="input_text" type="password" name="password" placeholder="Enter password">
+            </div>
+            <div class="">
+                <label>Re-Password</label><br>
+                <input class="input_text" type="password" name="re-password" placeholder="Enter password">
+            </div>
 
-    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
-    <input class="form-control btn-success" type="submit" value="Register">
-</form>
-    <hr>
-    <a href="login.php" style="text-decoration: none"><button class="form-control btn-primary">Login</button></a>
+            <input type="hidden" name="token" value="<?php echo Token::generate();?>">
+            <input class="input_submit" type="submit" value="Register">
+        </form>
+        <hr>
+        <a href="login.php"><button class="input_link">Login</button></a>
+    </div>
 </div>
 
 
