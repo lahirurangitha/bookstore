@@ -26,6 +26,7 @@ $users = $user->getUsers();
             <li><a href="manage_users.php">Manage Users</a>&raquo</li>
         </ul>
     </div>
+    <?php include_once 'includes/messages.php'?>
     <div class="panel_background col-11">
 
         <div class="panel_heading"><strong>Manage Users</strong></div>
