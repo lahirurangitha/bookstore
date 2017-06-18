@@ -18,7 +18,7 @@ if(!$user->isAdmin()){
 <?php include_once 'includes/navigation.php'?>
 
 <div class="content">
-    <div class="panel_background col-11">
+    <div class="panel_background col-11" style="display: flex">
         <div class="panel_item col-2 panel_link">
             <a href="manage_users.php">
             <div class="">

@@ -39,5 +39,5 @@ if(isset($_FILES['books'])){
         Session::put('m_type', 'error');
     }
 
-    Redirect::to('admin_dashboard.php');
+    Redirect::to('upload_books.php');
 }
