@@ -30,6 +30,11 @@ if (Input::exists()) {
             $password = $_POST['password'];
             $user = new User();
             if ($user->login($username, $password)) {
+                if(!$user->active){
+                    Session::put('messages','Your Account is deactivated by Administrator');
+                    Session::put('m_type','error');
+                    Redirect::to('login.php');
+                }
                 Session::put('user', $user->toString());
                 if ($user->role == 1) {
                     Redirect::to('admin_dashboard.php');
@@ -37,16 +42,19 @@ if (Input::exists()) {
                     Redirect::to('user_dashboard.php');
                 }
             } else {
-                echo 'Credentials does not match.';
+                Session::put('messages','Credentials does not match.');
+                Session::put('m_type','error');
             }
             //
         } else {
             $str = "";
             foreach ($validate->errors() as $error) {
-                $str .= $error;
-                $str .= '\n';
+                $str .= ucfirst($error);
+                $str .= '<br>';
             }
-            echo '<script type="text/javascript">alert("' . $str . '")</script>';
+            Session::put('messages',$str);
+            Session::put('m_type','error');
+            Redirect::to('login.php');
         }
     }
 }

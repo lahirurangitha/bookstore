@@ -29,7 +29,6 @@ if(Input::exists()){
             )
         ));
         if ($validation->passed()) {
-            echo 'passed';
             //register user
             $user = new User();
             try{
@@ -39,7 +38,8 @@ if(Input::exists()){
                      'token' => Hash::make(Input::get('username').Input::get('password'))
                     ));
 
-                echo 'registration successful';
+                Session::put('messages','Account created successfully');
+                Session::put('m_type','success');
                 Redirect::to('index.php');
             }catch (Exception $e){
                 die($e->getMessage());
@@ -48,10 +48,11 @@ if(Input::exists()){
         } else {
             $str = "";
             foreach ($validate->errors() as $error) {
-                $str .= $error;
-                $str .= '\n';
+                $str .= ucfirst($error);
+                $str .= '<br>';
             }
-            echo '<script type="text/javascript">alert("' . $str . '")</script>';
+            Session::put('messages',$str);
+            Session::put('m_type','error');
         }
     }
 }
