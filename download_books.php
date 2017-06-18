@@ -35,12 +35,12 @@ if(!$dwnld_db->count()){
             fpassthru($file);
             exit;
         } else {
-            Session::put('messages','Error.');
+            Session::put('messages','Book not found.');
             Session::put('m_type','error');
             Redirect::to('user_dashboard.php');
         }
     } else {
-        Session::put('messages','Er.');
+        Session::put('messages','Book not found.');
         Session::put('m_type','error');
         Redirect::to('user_dashboard.php');
     }
