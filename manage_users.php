@@ -35,7 +35,6 @@ $users = $user->getUsers();
                 <tr>
                     <th>No</th>
                     <th>Username</th>
-                    <th>Email</th>
                     <th>Settings</th>
                 </tr>
                 </thead>
@@ -48,7 +47,6 @@ $users = $user->getUsers();
                     <tr>
                         <td><?php echo $i ?></td>
                         <td><?php echo $u->username ?></td>
-                        <td><?php echo $u->email ?></td>
                         <td>
                             <?php
                             if ($u->active == 1) {
