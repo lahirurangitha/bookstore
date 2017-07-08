@@ -4,21 +4,27 @@ require_once 'core/init.php';
 
 include_once 'auth.php';
 if ($user->isLoggedIn()) {
-    if($user->isAdmin()){
+    if ($user->isAdmin()) {
         Redirect::to('admin_dashboard.php');
-    }else {
+    } else {
         Redirect::to('user_dashboard.php');
     }
 
 }
 
-if(Input::exists()){
-    if(Token::check(Input::get('token'))) {
+if (Input::exists()) {
+    if (Token::check(Input::get('token'))) {
         $validate = new Validation();
         $validation = $validate->check($_POST, array(
             'username' => array(
                 'required' => true,
                 'unique' => 'user' //table name
+            ),
+            'fname' => array(
+                'required' => true
+            ),
+            'lname' => array(
+                'required' => true
             ),
             'password' => array(
                 'required' => true
@@ -31,17 +37,19 @@ if(Input::exists()){
         if ($validation->passed()) {
             //register user
             $user = new User();
-            try{
+            try {
                 $user->create(array(
-                     'username' => Input::get('username'),
-                     'password' => Hash::make(Input::get('password')),
-                     'token' => Hash::make(Input::get('username').Input::get('password'))
-                    ));
+                    'username' => Input::get('username'),
+                    'fname' => Input::get('fname'),
+                    'lname' => Input::get('lname'),
+                    'password' => Hash::make(Input::get('password')),
+                    'token' => Hash::make(Input::get('username') . Input::get('password'))
+                ));
 
-                Session::put('messages','Account created successfully');
-                Session::put('m_type','success');
-                Redirect::to('index.php');
-            }catch (Exception $e){
+                Session::put('messages', 'Account created successfully.');
+                Session::put('m_type', 'success');
+                Redirect::to('login.php');
+            } catch (Exception $e) {
                 die($e->getMessage());
             }
             //
@@ -51,8 +59,8 @@ if(Input::exists()){
                 $str .= ucfirst($error);
                 $str .= '<br>';
             }
-            Session::put('messages',$str);
-            Session::put('m_type','error');
+            Session::put('messages', $str);
+            Session::put('m_type', 'error');
         }
     }
 }
@@ -75,7 +83,15 @@ if(Input::exists()){
 
             <div class="">
                 <label>Username</label><br>
-                <input class="input_text" type="username" name="username"  placeholder="Enter your username">
+                <input class="input_text" type="text" name="username" placeholder="Enter your username">
+            </div>
+            <div class="">
+                <label>First Name</label><br>
+                <input class="input_text" type="text" name="fname" placeholder="Enter your first name">
+            </div>
+            <div class="">
+                <label>Last name</label><br>
+                <input class="input_text" type="text" name="lname" placeholder="Enter your last name">
             </div>
             <div class="">
                 <label>Password</label><br>
@@ -86,11 +102,13 @@ if(Input::exists()){
                 <input class="input_text" type="password" name="re-password" placeholder="Enter password">
             </div>
 
-            <input type="hidden" name="token" value="<?php echo Token::generate();?>">
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
             <input class="input_submit" type="submit" value="Register">
         </form>
         <hr>
-        <a href="login.php"><button class="input_link">Login</button></a>
+        <a href="login.php">
+            <button class="input_link">Login</button>
+        </a>
     </div>
 </div>
 

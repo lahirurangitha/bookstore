@@ -8,35 +8,65 @@ if(is_dir($upload_dir)==false){
     mkdir("$upload_dir", 0700);		// Create directory if it does not exist
 }
 if(isset($_FILES['books'])){
-    if(!$_FILES["books"]["error"] == 4) {
-        $errors= array();
-        foreach($_FILES['books']['tmp_name'] as $key => $tmp_name ){
-            $file_name = $_FILES['books']['name'][$key];
-            $file_size =$_FILES['books']['size'][$key];
-            $file_tmp =$_FILES['books']['tmp_name'][$key];
-            $file_type=$_FILES['books']['type'][$key];
+    if(!$_FILES["books"]["error"][0] == 4) {
+        //
+        $validate = new Validation();
+        $validation = $validate->check($_POST, array(
+            'name' => array(
+                'required' => true,
+            ),
+            'isbn' => array(
+                'required' => true
+            )
+        ));
+        if ($validation->passed()) {
 
-            $sql="INSERT into book (name,created_by,location) VALUES (?,?,?)";
-            $upload_db = DB::getInstance();
+        //
+            $errors= array();
+            foreach($_FILES['books']['tmp_name'] as $key => $tmp_name ){
+                $file_name = $_FILES['books']['name'][$key];
+                $file_size =$_FILES['books']['size'][$key];
+                $file_tmp =$_FILES['books']['tmp_name'][$key];
+                $file_type=$_FILES['books']['type'][$key];
 
-            if(empty($errors)==true){
-                if(!file_exists("$upload_dir/".$file_name)){
-                    move_uploaded_file($file_tmp,$upload_dir."/".$file_name);
-                    $location = $upload_dir."/".$file_name;
-                }else{									//rename the file if another one exist
-                    rename($file_tmp,$upload_dir."/".$file_name.time()) ;
-                    $location = $upload_dir."/".$file_name.time();
+                $sql="INSERT into book (name,display,isbn,created_by,location) VALUES (?,?,?,?,?)";
+                $upload_db = DB::getInstance();
+                $book = new Book();
+
+                if(empty($errors)==true){
+                    if(!file_exists("$upload_dir/".$file_name)){
+                        move_uploaded_file($file_tmp,$upload_dir."/".$file_name);
+                        $location = $upload_dir."/".$file_name;
+                    }else{									//rename the file if another one exist
+                        rename($file_tmp,$upload_dir."/".$file_name.time()) ;
+                        $location = $upload_dir."/".$file_name.time();
+                    }
+//                    $upload_db->query($sql,array($file_name,Input::get('name'),Input::get('isbn'),$user->id,$location));
+                    $book->create(array(
+                        'name' => $file_name,
+                        'display' => Input::get('name'),
+                        'isbn' =>Input::get('isbn'),
+                        'created_by' =>$user->id,
+                        'location' => $location
+                    ));
+                }else{
+                    print_r($errors);
                 }
-                $upload_db->query($sql,array($file_name,$user->id,$location));
-            }else{
-                print_r($errors);
             }
-        }
-        if(empty($error)){
-            Session::put('messages','Successfully uploaded.');
-            Session::put('m_type', 'success');
-        }else{
-            Session::put('messages','Failed to upload.');
+            if(empty($error)){
+                Session::put('messages','Successfully uploaded.');
+                Session::put('m_type', 'success');
+            }else{
+                Session::put('messages','Failed to upload.');
+                Session::put('m_type', 'error');
+            }
+        }else {
+            $str = "";
+            foreach ($validate->errors() as $error) {
+                $str .= ucfirst($error);
+                $str .= '<br>';
+            }
+            Session::put('messages', $str);
             Session::put('m_type', 'error');
         }
     }else{

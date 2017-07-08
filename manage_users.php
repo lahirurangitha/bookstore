@@ -35,6 +35,8 @@ $users = $user->getUsers();
                 <tr>
                     <th>No</th>
                     <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Settings</th>
                 </tr>
                 </thead>
@@ -47,6 +49,8 @@ $users = $user->getUsers();
                     <tr>
                         <td><?php echo $i ?></td>
                         <td><?php echo $u->username ?></td>
+                        <td><?php echo $u->fname ?></td>
+                        <td><?php echo $u->lname ?></td>
                         <td>
                             <?php
                             if ($u->active == 1) {

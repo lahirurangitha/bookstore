@@ -20,6 +20,15 @@ if(!$user->isAdmin()){
 <div class="content">
     <div class="panel_background col-11" style="display: flex">
         <div class="panel_item col-2 panel_link">
+            <a href="update_profile.php">
+                <div class="">
+                    <div class="panel_item_heading"><strong>Update Profile</strong></div>
+                    <div class="panel_body"><img src="styles/img/icons/update_profile.png" class="panel_img"></div>
+
+                </div>
+            </a>
+        </div>
+        <div class="panel_item col-2 panel_link">
             <a href="manage_users.php">
             <div class="">
                 <div class="panel_item_heading"><strong>Manage Users</strong></div>
@@ -34,6 +43,15 @@ if(!$user->isAdmin()){
                     <div class="panel_item_heading"><strong>Upload Books</strong></div>
                     <div class="panel_body"><img src="styles/img/icons/upload_books.png" class="panel_img"></div>
 <!--                                    <div class="panel-footer"></div>-->
+                </div>
+            </a>
+        </div>
+        <div class="panel_item col-2 panel_link">
+            <a href="manage_books.php">
+                <div class="">
+                    <div class="panel_item_heading"><strong>Search & Remove Books</strong></div>
+                    <div class="panel_body"><img src="styles/img/icons/search_book.png" class="panel_img"></div>
+                    <!--                                    <div class="panel-footer"></div>-->
                 </div>
             </a>
         </div>
