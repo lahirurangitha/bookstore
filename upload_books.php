@@ -27,7 +27,7 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
             <li><a href="upload_books.php">Upload Books</a>&raquo</li>
         </ul>
     </div>
-    <div class="panel_background col-11">
+    <div class="panel_background col-9">
 
         <div class="panel_heading"><strong>Upload Books</strong></div>
         <div class="panel_body">
@@ -42,7 +42,7 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
                 </div>
                 <input name="books[]" type="file"/>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" value="Upload" class="input_submit">
             </form>
         </div>
         <!--                <div class="panel-footer"></div>-->

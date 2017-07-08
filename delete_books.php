@@ -18,4 +18,4 @@ if($b_db->error()){
     Session::put('m_type', 'success');
 }
 
-Redirect::to('upload_books.php');
+Redirect::to('manage_books.php');
