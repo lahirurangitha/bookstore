@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Shanika-Edirisinghe
- * Date: 12/08/15
- * Time: 11:47
- */
+
 //load required files
 require_once 'core/init.php'; //classes
 require 'SMS/sms.php'; //sms
