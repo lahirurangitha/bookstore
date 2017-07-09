@@ -9,41 +9,32 @@ if ($user->isAdmin()) {
     Redirect::to('login.php');
 }
 
-$upload_dir = Config::get('upload_dir');
-if(is_dir($upload_dir)==false){
-    mkdir("$upload_dir", 0700);		// Create directory if it does not exist
-}
-
 $id = $_GET['id'];
-$sql  = "SELECT * FROM book WHERE id = ?";
-$dwnld_db = DB::getInstance()->query($sql,array($id));
-if(!$dwnld_db->count()){
+
+$book = new Book();
+$book->getById($id);
+if(count($book->data())==0){
     Session::put('messages','Book not found.');
     Session::put('m_type','error');
-//    Redirect::to('user_dashboard.php');
 }else{
-    $book = $dwnld_db->first();
-    $path = $book->location;
-    if (file_exists($path) && is_readable($path)) {
-        $size = filesize($path);
-        header('Content-Type: application/octet-stream');
-        header('Content-Length: '.$size);
-        header('Content-Disposition: attachment; filename='.$book->name);
-        header('Content-Transfer-Encoding: binary');
-        $file = @ fopen($path, 'rb');
-        if ($file) {
-            fpassthru($file);
-            exit;
-        } else {
-            Session::put('messages','Book not found.');
-            Session::put('m_type','error');
-            Redirect::to('user_dashboard.php');
-        }
-    } else {
-        Session::put('messages','Book not found.');
+    if($book->count==0){
+        Session::put('messages','Failed to download. No Available copies found.');
         Session::put('m_type','error');
-        Redirect::to('user_dashboard.php');
+    }else{
+        $db = DB::getInstance();
+        $db->query('SELECT * FROM users_books WHERE user_id = ? AND book_id =  ?',array($user->id,$book->id));
+        if($db->count()>0){
+            Session::put('messages','You have already downloaded this book.');
+            Session::put('m_type','error');
+        }else{
+            $update = $book->update(array('count' => $book->count -1,'download_count' => $book->download_count+1),$id);
+            $db->insert('users_books',array('user_id'=>$user->id,'book_id'=>$book->id));
+            Session::put('messages','Book downloaded successfully');
+            Session::put('m_type','success');
+        }
     }
 }
+
+Redirect::to('books.php');
 
 ?>

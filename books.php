@@ -46,7 +46,7 @@ if ($user->isAdmin()) {
                         <th>No</th>
                         <th>Name</th>
                         <th>ISBN</th>
-                        <th>Size</th>
+                        <th>Available Count</th>
                         <th>Download</th>
                     </tr>
                     </thead>
@@ -59,18 +59,11 @@ if ($user->isAdmin()) {
                         <tr id="<?php echo "tr" . $b->id ?>" class="trcls">
 <!--                            <td>--><?php //echo $i ?><!--</td>-->
                             <td><img src="styles/img/icons/pdf-icon.png" style="height: 50px"></td>
-                            <td><?php echo $b->display ?></td>
+                            <td><?php echo $b->name ?></td>
                             <td><?php echo $b->isbn ?></td>
-                            <td><?php
-                                if (round(filesize($b->location) * .0009765625) >= 1000) {
-                                    echo (round(filesize($b->location) * .0009765625 * .0009765625)) . " MB";
-                                } else {
-                                    echo (round(filesize($b->location) * .0009765625)) . " KB";
-                                }
-                                ?>
-                            </td>
+                            <td><?php echo $b->count?></td>
                             <td>
-                                <a href="download_books.php?id=<?php echo $b->id ?>">Download</a>
+                                <a href="download_books.php?id=<?php echo $b->id ?>" onclick="return confirm('Are You Sure?')">Download</a>
                             </td>
                         </tr>
                     <?php

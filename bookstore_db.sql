@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2017 at 10:29 AM
+-- Generation Time: Jul 09, 2017 at 01:09 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -29,28 +29,11 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `book` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `display` varchar(100) NOT NULL,
   `isbn` varchar(100) NOT NULL,
-  `location` varchar(200) DEFAULT NULL,
+  `count` int(11) NOT NULL,
+  `download_count` int(11) NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `book`
---
-
-INSERT INTO `book` (`id`, `name`, `display`, `isbn`, `location`, `created_by`) VALUES
-(3, '20170208201796361112900040592.pdf', 'first', '2421', 'store/20170208201796361112900040592.pdf', 1),
-(4, 'Final-individual-report-2013CS121.pdf', 'second', '2421', 'store/Final-individual-report-2013CS121.pdf', 1),
-(5, 'Yehen_Abedeera.pdf', 'th', '2421', 'store/Yehen_Abedeera.pdf1499498479', 1),
-(6, 'Anjana_Nisal.pdf', '4th', '2421', 'store/Anjana_Nisal.pdf', 1),
-(7, 'Yehen_Abedeera.pdf', 'th', '2421', 'store/Yehen_Abedeera.pdf1499498479', 1),
-(8, 'Yehen_Abedeera.pdf', 'th', '2421', 'store/Yehen_Abedeera.pdf1499498479', 1),
-(9, 'Yehen_Abedeera.pdf', 'th', '2421', 'store/Yehen_Abedeera.pdf1499498479', 1),
-(10, 'Final-individual-report-2013CS121.pdf', 'second', '2421', 'store/Final-individual-report-2013CS121.pdf', 1),
-(11, '20170208201796361112900040592.pdf', 'first', '2421', 'store/20170208201796361112900040592.pdf', 1),
-(12, 'Yehen_Abedeera.pdf', 'th', '2421', 'store/Yehen_Abedeera.pdf1499498479', 1),
-(13, '20170208201796361112900040592.pdf', 'first', '2421', 'store/20170208201796361112900040592.pdf', 1);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -87,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` int(11) NOT NULL DEFAULT '2',
   `active` int(11) NOT NULL DEFAULT '0',
   `token` varchar(100) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -95,7 +78,20 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `username`, `fname`, `lname`, `password`, `role`, `active`, `token`) VALUES
 (1, 'admin', 'lahiru', 'pathirana', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 1, 1, '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'),
-(2, 'user', 'fname', 'lname', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 2, 1, 'e606e38b0d8c19b24cf0ee3808183162ea7cd63ff7912dbb22b5e803286b4446');
+(2, 'user', 'fname', 'lname', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 2, 1, 'e606e38b0d8c19b24cf0ee3808183162ea7cd63ff7912dbb22b5e803286b4446'),
+(3, 'lahiru', 'lahiru', 'rangitha', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2, 1, '01d44c3e9548a0b4479dc4cd1d0e16d495e937ad45c5a24b2c7c35e2adc18ba3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_books`
+--
+
+CREATE TABLE IF NOT EXISTS `users_books` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -120,6 +116,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_books`
+--
+ALTER TABLE `users_books`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -127,7 +129,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -137,7 +139,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `users_books`
+--
+ALTER TABLE `users_books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -52,6 +52,8 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
                     <th>No</th>
                     <th>Name</th>
                     <th>ISBN</th>
+                    <th>Available count</th>
+                    <th>Downloaded count</th>
                     <th>Remove</th>
                 </tr>
                 </thead>
@@ -63,8 +65,10 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
                     ?>
                     <tr id="<?php echo "tr" . $book->id ?>" class="trcls">
                         <td><?php echo $i ?></td>
-                        <td><?php echo $book->display ?></td>
+                        <td><?php echo $book->name ?></td>
                         <td><?php echo $book->isbn ?></td>
+                        <td><?php echo $book->count ?></td>
+                        <td><?php echo $book->download_count ?></td>
                         <td>
                             <a href="delete_books.php?id=<?php echo $book->id ?>"
                                style="text-decoration: none" onclick="return confirm('Are You Sure?')">

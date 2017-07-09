@@ -31,18 +31,21 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
 
         <div class="panel_heading"><strong>Upload Books</strong></div>
         <div class="panel_body">
-            <form method="post" action="upload_books_process.php" enctype="multipart/form-data">
+            <form method="post" action="upload_books_process.php">
                 <div class="">
                     <label>Name</label><br>
-                    <input class="input_text" type="text" name="name" placeholder="Enter name">
+                    <input class="input_text" type="text" name="name" placeholder="Enter Name">
                 </div>
                 <div class="">
                     <label>ISBN</label><br>
                     <input class="input_text" type="text" name="isbn" placeholder="Enter ISBN">
                 </div>
-                <input name="books[]" type="file"/>
+                <div class="">
+                    <label>Count</label><br>
+                    <input class="input_text col-2" type="number" name="count" placeholder="Enter Book Count">
+                </div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-                <input type="submit" value="Upload" class="input_submit">
+                <input type="submit" value="Upload" class="input_submit col-2">
             </form>
         </div>
         <!--                <div class="panel-footer"></div>-->

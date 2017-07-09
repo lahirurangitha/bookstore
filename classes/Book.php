@@ -20,7 +20,9 @@ class Book {
     public function update($fields = array(), $id){
         if(!$this->_db->update('book', $id, $fields)) {
             throw new Exception('There was a problem updating..');
+            return false;
         }
+        return true;
     }
 
     public  function data(){
@@ -56,7 +58,7 @@ class Book {
     public function getBookByStr($str)
     {
         $books = array();
-        $this->_db->query('SELECT * FROM book WHERE display LIKE ?', array("%$str%"));
+        $this->_db->query('SELECT * FROM book WHERE name LIKE ?', array("%$str%"));
         $this->_data = $this->_db->results();
         if ($this->_db->count()) {
             foreach ($this->_db->results() as $b) {
