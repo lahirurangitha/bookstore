@@ -6,9 +6,7 @@
 </footer>
 
 
-<!-- jQuery -->
-<script src="styles/js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="styles/js/bootstrap.min.js"></script>
+<!-- JavaScript -->
+<script src="styles/js/main.js" type="text/javascript"></script>
 

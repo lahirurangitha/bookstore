@@ -53,4 +53,17 @@ class Book {
         return $books;
     }
 
+    public function getBookByStr($str)
+    {
+        $books = array();
+        $this->_db->query('SELECT * FROM book WHERE display LIKE ?', array("%$str%"));
+        $this->_data = $this->_db->results();
+        if ($this->_db->count()) {
+            foreach ($this->_db->results() as $b) {
+                $books[] = $b;
+            }
+        }
+        return $books;
+    }
+
 }

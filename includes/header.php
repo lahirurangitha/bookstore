@@ -17,6 +17,6 @@
     <link href="styles/css/main.css" rel="stylesheet" type="text/css">
 
     <link href="styles/css/custom.css" rel="stylesheet" type="text/css">
-    <script src="styles/js/main.js" type="text/javascript"></script>
+
 
 </head>

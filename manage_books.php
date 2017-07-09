@@ -28,8 +28,17 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
         </ul>
     </div>
     <div class="panel_background col-11">
-        <div class="panel_heading"><strong>Manage Books</strong></div>
-        <div style="max-height: 350px;overflow: auto">
+        <div class="panel_heading">
+            <strong>Manage Books</strong>
+
+            <form style="float:right;">
+                <label>Search</label>
+                <input class="input_text col-8" type="text" id="bookSearch"
+                       onkeyup="showResult(this.value,'searchBook')">
+            </form>
+        </div>
+        <div class="panel_body" style="max-height: 350px;min-width: 100%;overflow: auto">
+            <span id="count"></span>
             <?php
             $sql = 'SELECT * FROM book';
             $books_db = DB::getInstance();
@@ -52,7 +61,7 @@ if (!$user->isLoggedIn() || !$user->isAdmin()) {
                 foreach ($books as $book) {
                     $i++;
                     ?>
-                    <tr>
+                    <tr id="<?php echo "tr" . $book->id ?>" class="trcls">
                         <td><?php echo $i ?></td>
                         <td><?php echo $book->display ?></td>
                         <td><?php echo $book->isbn ?></td>

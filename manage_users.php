@@ -28,8 +28,16 @@ $users = $user->getUsers();
     </div>
     <div class="panel_background col-11">
 
-        <div class="panel_heading"><strong>Manage Users</strong></div>
-        <div class="panel_body">
+        <div class="panel_heading">
+            <strong>Manage Users</strong>
+            <form style="float:right;">
+                <label>Search</label>
+                <input class="input_text col-8" type="text" id="userSearch" onkeyup="showResult(this.value,'searchUser')">
+            </form>
+
+        </div>
+        <div class="panel_body" style="max-height: 350px;min-width: 100%;overflow: auto">
+            <span id="count"></span>
             <table class="table">
                 <thead>
                 <tr>
@@ -46,7 +54,7 @@ $users = $user->getUsers();
                 foreach ($users as $u) {
                     $i++;
                     ?>
-                    <tr>
+                    <tr id="<?php echo "tr".$u->id?>" class="trcls">
                         <td><?php echo $i ?></td>
                         <td><?php echo $u->username ?></td>
                         <td><?php echo $u->fname ?></td>
