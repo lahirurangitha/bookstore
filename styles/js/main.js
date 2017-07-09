@@ -27,9 +27,6 @@ function showResult(str,page) {
             for (u in usrs) {
                 document.getElementById('tr' + usrs[u].id).style.display = '';
             }
-            //var obj = this.responseText[key];
-            //alert(obj);
-
             document.getElementById("count").innerHTML = usrs.length + ' results found.';
         }
     };

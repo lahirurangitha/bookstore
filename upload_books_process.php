@@ -44,7 +44,7 @@ if(isset($_FILES['books'])){
 //                    $upload_db->query($sql,array($file_name,Input::get('name'),Input::get('isbn'),$user->id,$location));
                     $book->create(array(
                         'name' => $file_name,
-                        'display' => Input::get('name'),
+                        'display' => ucwords(Input::get('name')),
                         'isbn' =>Input::get('isbn'),
                         'created_by' =>$user->id,
                         'location' => $location
