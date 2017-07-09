@@ -14,11 +14,13 @@ body {
 
 .footer{
     background-color: #111;
+    color: #ffffff;
+    font-size: 20px;
     position: relative;
     right: 0;
     bottom: 0;
     left: 0;
-    text-align: center;
+    padding-left: 25px;
     min-height: 10vh;
 }
 

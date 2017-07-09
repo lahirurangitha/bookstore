@@ -1,7 +1,7 @@
 <?php include_once 'messages.php'?>
 <footer class="footer">
     <div>
-        &copy; bookstore.lk 2017
+        &copy; bookstore-lk 2017
     </div>
 </footer>
 
